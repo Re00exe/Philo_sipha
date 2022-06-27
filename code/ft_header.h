@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/06/17 10:43:07 by midfath          ###   ########.fr       */
+/*   Updated: 2022/06/28 00:29:15 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ typedef struct s_parma
 } t_parma;
 
 /*initiale */
-void	ft_initphil(char **av, t_parma *p);
+int	ft_initphil(char **av, t_parma *p);
 
 /*convert the char number to an intger */
 long	ft_up_atoi(char	*str);
+int	ft_isdigit(int c);
+/*creart pilos and star them*/
+void	ft_dining_philos(t_parma *p);
 
 #endif
