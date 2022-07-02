@@ -6,11 +6,11 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:57:24 by midfath           #+#    #+#             */
-/*   Updated: 2022/06/21 14:03:50 by midfath          ###   ########.fr       */
+/*   Updated: 2022/07/02 19:29:27 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_dining_philos(t_parma *p)
-{
+// void	ft_dining_philos(t_parma *p)
+// {
 	
-}
+// }

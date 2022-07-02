@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/06/28 00:28:09 by midfath          ###   ########.fr       */
+/*   Updated: 2022/07/02 19:29:34 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int main(int ac, char **av)
 				return (0);
 			i++;
 		}
-		ft_dining_philos(p);
+	//	ft_dining_philos(p);
 	}
 	else
 		printf("Arguments !!!\n");

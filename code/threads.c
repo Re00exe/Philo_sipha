@@ -6,22 +6,22 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 00:33:04 by midfath           #+#    #+#             */
-/*   Updated: 2022/06/30 17:08:54 by midfath          ###   ########.fr       */
+/*   Updated: 2022/07/02 19:29:21 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_header.h"
-q
-void	ft_dining_philos(t_parma *p)
-{
-	int		i;
-	int		j;
+// #include "ft_header.h"
+
+// void	ft_dining_philos(t_parma *p)
+// {
+// 	int		i;
+// 	int		j;
 	
-	i = 0;
-	j = 0;
-	while (i < p->n_philo)
-	{
-		pthread_create();
-	}
+// 	i = 0;
+// 	j = 0;
+// 	while (i < p->n_philo)
+// 	{
+// 		pthread_create();
+// 	}
 	
-}
+// }
