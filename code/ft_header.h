@@ -33,16 +33,25 @@
 int	ft_atoi(const char *str);
 
 /*philospher*/
+typedef	struct s_philo
+{
+	int		id;
+	int		n_toeat;
+	int		life;
+	size_t	t_death;
+	pthread_t	tid;
+}	t_philol;
 
 typedef struct s_parma 
 {
-	int	n_philo;
-	int t_die;
-	int	t_eat;
-	int t_sleep;
-	int	t_neat;
-	int	p_end;
-	
+	int		t_die;
+	int		n_philo;
+	int		t_eat;
+	int		t_sleep;
+	int		n_eat;
+	int		p_end;
+	size_t	t_spawn;
+	t_philo	*philo
 
 } t_parma;
 

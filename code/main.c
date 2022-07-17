@@ -27,9 +27,7 @@ int	ft_check_digit(char **av)
 
 int	ft_initphil(char **av, t_parma *p)
 {
-	int	i;
 
-	i = 0;
 	if (ft_check_digit(av) == -1)
 		{
 			printf("Invalid arguments !!! \n");
