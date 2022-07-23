@@ -16,7 +16,7 @@ CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -rf
 PRINTF 		= printf
 
-SRC = code/main.c code/ft_file.c
+SRC = code/main.c code/ft_file.c code/threads.c code/utils.c
 
 all : $(NAME)
 

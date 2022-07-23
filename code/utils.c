@@ -6,11 +6,20 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:57:24 by midfath           #+#    #+#             */
-/*   Updated: 2022/07/02 19:29:27 by midfath          ###   ########.fr       */
+/*   Updated: 2022/07/23 16:49:24 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// void	ft_dining_philos(t_parma *p)
-// {
+#include "ft_header.h"
+
+void	*ft_start(void *ph)
+{
+	t_philo *rp;
 	
-// }
+	rp = ph;
+	if (rp->pram->p_end)
+	{
+				
+	}
+	return (NULL);
+}

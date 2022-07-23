@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/07/02 19:29:34 by midfath          ###   ########.fr       */
+/*   Updated: 2022/07/22 07:16:24 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_check_digit(char **av)
 	return (1);
 }
 
-int	ft_initphil(char **av, t_parma *p)
+int	ft_initparma(char **av, t_parma *p)
 {
 
 	if (ft_check_digit(av) == -1)
@@ -40,9 +40,9 @@ int	ft_initphil(char **av, t_parma *p)
 	p->t_sleep = ft_atoi(av[4]);
 	p->p_end = 0;
 	if (av[5])
-		p->t_neat = ft_atoi(av[5]);
+		p->n_eat = ft_atoi(av[5]);
 	else
-		p->t_neat = -1;
+		p->n_eat = -1;
 	return (1);
 }
 
@@ -62,12 +62,11 @@ int main(int ac, char **av)
 			p = malloc(sizeof(t_parma));
 			if (!p)
 				return (printf(" \033[1;31m NO MeMory\n" DEFAULT));
-			memset(p, 0, sizeof(t_parma));
-			if(!ft_initphil(av , p))
+			if(!ft_initparma(av , p))
 				return (0);
 			i++;
 		}
-	//	ft_dining_philos(p);
+		ft_dining_philos(p);
 	}
 	else
 		printf("Arguments !!!\n");
