@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:56:01 by midfath           #+#    #+#             */
-/*   Updated: 2022/07/23 08:12:53 by midfath          ###   ########.fr       */
+/*   Updated: 2022/07/25 14:36:25 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,3 +93,4 @@ size_t ft_time(t_philo *ph)
 	else
 		return (ft_time(NULL) - ph->pram->t_spawn);
 }
+ 

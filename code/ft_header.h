@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/07/23 15:40:57 by midfath          ###   ########.fr       */
+/*   Updated: 2022/07/25 11:39:40 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,16 @@ typedef	struct s_philo
 
 typedef struct s_parma 
 {
-	int		t_die;
-	int		n_philo;
-	int		t_eat;
-	int		t_sleep;
-	int		n_eat;
-	int		p_end;
-	size_t	t_spawn;
-	t_philo	*philo;
-
+	int					t_die;
+	int					n_philo;
+	int					t_eat;
+	int					t_sleep;
+	int					n_eat;
+	int					p_end;
+	size_t				t_spawn;
+	t_philo				*philo;
+	p_thread_mutex_t	*key;
+	p_thread_mutex_t	output_key;
 } t_parma;
 
 
@@ -69,7 +70,10 @@ long	ft_up_atoi(char	*str);
 int		ft_isdigit(int c);
 
 /*intilais the rest of the struct and start creating mutexs and threads*/
-void	ft_dining_philos(t_parma *p);
+int	ft_dining_philos(t_parma *p);
+
+/*init forks mutex*/
+int 	ft_startserving(t_parma *parm);
 
 /*creat threads (phlasipha)*/
 int		ft_spawn_philos(t_parma *p);
@@ -79,5 +83,12 @@ size_t	ft_time(t_philo *ph);
 
 /*start pholo routin */
 void *ft_start(void *ph);
+
+/*routin to do by the philos*/
+void *ft_routin(void *p);
+
+/*lock the output while writing and unlocking it again*/
+void	ft_thread_print(char *str, t_philo *ph);
+
 
 #endif
