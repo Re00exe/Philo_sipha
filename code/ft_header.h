@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/07/25 11:39:40 by midfath          ###   ########.fr       */
+/*   Updated: 2022/07/31 09:44:23 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ typedef struct s_parma
 	int					p_end;
 	size_t				t_spawn;
 	t_philo				*philo;
-	p_thread_mutex_t	*key;
-	p_thread_mutex_t	output_key;
+	pthread_mutex_t		*key;
+	pthread_mutex_t		output_key;
 } t_parma;
 
 
@@ -73,7 +73,7 @@ int		ft_isdigit(int c);
 int	ft_dining_philos(t_parma *p);
 
 /*init forks mutex*/
-int 	ft_startserving(t_parma *parm);
+int 	ft_start_serving(t_parma *parm);
 
 /*creat threads (phlasipha)*/
 int		ft_spawn_philos(t_parma *p);
@@ -90,5 +90,7 @@ void *ft_routin(void *p);
 /*lock the output while writing and unlocking it again*/
 void	ft_thread_print(char *str, t_philo *ph);
 
+/*joining threads and free them all */
+int		ft_endthreads(t_parma *p);
 
 #endif
