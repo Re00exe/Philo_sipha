@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/07/31 09:44:23 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/03 08:31:28 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 
 # define DEFAULT "\033[0;39m"
 
-# define PHILO_T_FORK " \033[1;32m  has taken a fork\n \033[0;39m"
-# define PHILO_EATING " \033[1;36m  is eating\n \033[0;39m"
-# define PHILO_SLEEP " \033[1;35m  is sleeping\n \033[0;39m"
-# define PHILO_THINK " \033[1;36m  is thinking\n  \033[0;39m"
-# define PHILO_DIE  " \033[1;30m died\n \033[0;39m"
+# define PHILO_T_FORK "\033[1;32mhas taken a fork\n\033[0;39m"
+# define PHILO_EATING "\033[1;36mis eating\n\033[0;39m"
+# define PHILO_SLEEP "\033[1;35mis sleeping\n\033[0;39m"
+# define PHILO_THINK "\033[1;36mis thinking\n\033[0;39m"
+# define PHILO_DIE  "\033[1;30mdied\n \033[0;39m"
 
 /*utils*/
 int	ft_atoi(const char *str);
@@ -55,6 +55,7 @@ typedef struct s_parma
 	int					t_sleep;
 	int					n_eat;
 	int					p_end;
+	int					p_full;
 	size_t				t_spawn;
 	t_philo				*philo;
 	pthread_mutex_t		*key;

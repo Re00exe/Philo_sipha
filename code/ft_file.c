@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:56:01 by midfath           #+#    #+#             */
-/*   Updated: 2022/07/25 14:36:25 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/01 17:30:01 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ size_t ft_time(t_philo *ph)
 
 	gettimeofday(&t, NULL);
 	if (ph == NULL)
-		return (t.tv_sec * 1000 + t.tv_usec / 1000);
+		return (t.tv_sec * 1000 + t.tv_usec / 1000 );
 	else
 		return (ft_time(NULL) - ph->pram->t_spawn);
 }
- 

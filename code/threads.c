@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 00:33:04 by midfath           #+#    #+#             */
-/*   Updated: 2022/07/31 09:47:36 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/04 12:05:10 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ft_endthreads(t_parma *p)
 	pthread_mutex_destroy(&p->output_key);
 	free(p->key);
 	free(p->philo);
+	free(p);
 	return (0);
 }
 
@@ -47,6 +48,7 @@ int	ft_dining_philos(t_parma *p)
 		p->philo[i].t_death = p->t_spawn;
 		i++;
 	}
+	
 	if (ft_start_serving(p))
 		return (1);
 	else if (ft_spawn_philos(p))
@@ -64,9 +66,11 @@ int	ft_spawn_philos(t_parma *p)
 	while (i < p->n_philo)
 	{
 		ph = &p->philo[i];
+		ph->pram = p;
 		if(pthread_create(&(p->philo[i].t_id), NULL, ft_start, ph))
 			return (1);
 		i++;
-	}	
+		usleep(100);
+	}
 	return (0);
 }

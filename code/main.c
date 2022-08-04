@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/07/31 09:46:18 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/02 10:50:52 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	ft_initparma(char **av, t_parma *p)
 	p->t_eat = ft_atoi(av[3]);
 	p->t_sleep = ft_atoi(av[4]);
 	p->p_end = 0;
+	p->p_full = 0;
 	if (av[5])
 		p->n_eat = ft_atoi(av[5]);
 	else
