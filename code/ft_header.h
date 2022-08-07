@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/03 08:31:28 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/06 18:52:48 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ struct s_parma ;
 typedef	struct s_philo
 {
 	int				id;
-	int				n_toeat;
 	int				t_life;
+	int				n_toeat;
 	struct s_parma	*pram;
 	size_t			t_death;
 	pthread_t		t_id;
@@ -93,5 +93,10 @@ void	ft_thread_print(char *str, t_philo *ph);
 
 /*joining threads and free them all */
 int		ft_endthreads(t_parma *p);
+/* check the death of a philo and end the program */
+void	*to_the_death(void *p);
+
+/*check if the philos ate all their  meals and end the program*/
+void	*ft_track(void *p);
 
 #endif

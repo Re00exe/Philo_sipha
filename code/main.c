@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/02 10:50:52 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/05 16:18:40 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ int	ft_check_digit(char **av)
 
 int	ft_initparma(char **av, t_parma *p)
 {
-
 	if (ft_check_digit(av) == -1)
-		{
-			printf("Invalid arguments !!! \n");
-			free(p);
-			return (0);
-		}	
+	{
+		printf("Invalid arguments !!! \n");
+		free(p);
+		return (0);
+	}	
 	p->n_philo = ft_atoi(av[1]);
 	p->t_die = ft_atoi(av[2]);
 	p->t_eat = ft_atoi(av[3]);
@@ -64,7 +63,7 @@ int main(int ac, char **av)
 			if (!p)
 				return (printf(" \033[1;31m NO MeMory\n" DEFAULT));
 			if(!ft_initparma(av , p))
-				return (0);
+				return (printf(" \033[1;31m Parsing error\n" DEFAULT));
 			i++;
 		}
 		if (ft_dining_philos(p))

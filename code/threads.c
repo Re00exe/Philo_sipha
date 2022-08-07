@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 00:33:04 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/04 12:05:10 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/07 14:26:08 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	ft_spawn_philos(t_parma *p)
 {
 	int			i;
 	t_philo		*ph;
+	pthread_t	track;
 	
 	i = 0;
 	p->t_spawn = ft_time(NULL);
@@ -69,8 +70,47 @@ int	ft_spawn_philos(t_parma *p)
 		ph->pram = p;
 		if(pthread_create(&(p->philo[i].t_id), NULL, ft_start, ph))
 			return (1);
+		pthread_create(&track, NULL, to_the_death, ph);
+		pthread_detach(track);
 		i++;
 		usleep(100);
 	}
+	if (p->n_eat >= 0)
+	{
+		pthread_create(&track, NULL, ft_track, p);
+		pthread_detach(track);
+	}
 	return (0);
+}
+
+void	*to_the_death(void *p)
+ {
+ 	t_philo *ph;
+	
+	ph = p;
+	while (!ph->pram->p_end)
+	{
+		if (ph->t_death + ph->pram->t_die < ft_time(ph))
+		{
+			ft_thread_print(PHILO_DIE, ph);
+			ph->t_death = 1;
+			ph->pram->p_end = 1;
+		}
+		usleep(100);
+	}
+	return (NULL);
+ }
+ 
+ void  *ft_track(void *p)
+ {
+	t_parma	*pr;
+	
+	pr = p;
+	while (!pr->p_end)
+	{
+		if (pr->p_full == pr->n_philo)
+			pr->p_end = 1;
+					printf("here\n");
+	}
+	return (NULL);
 }

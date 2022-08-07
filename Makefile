@@ -22,7 +22,7 @@ all : $(NAME)
 
 $(NAME) : creat_dir $(SRC)
 		@$(CC) $(CFLAGS) $(SRC) -o $(NAME) 
-#-fsanitize=thread -g 
+#-fsanitize=address -g 
 		@$(PRINTF) "\r%100s\r$(BLUE)$(NAME) is up to date!$(DEFAULT)\n"
 		@mv $(NAME) $(BIN_DIR)
 
