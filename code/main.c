@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/05 16:18:40 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:35:16 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ int main(int ac, char **av)
 		}
 		if (ft_dining_philos(p))
 			printf("Error {init_phase}\n");
+		ft_track(p);
 		if(ft_endthreads(p))
-			printf("thread  joining Erorr;\n");	
+		  	printf("thread  joining Erorr;\n");
+		
 	}
 	else
 		printf("Arguments !!!\n");

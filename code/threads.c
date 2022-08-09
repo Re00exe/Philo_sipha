@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 00:33:04 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/07 14:26:08 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/09 19:39:40 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_endthreads(t_parma *p)
 	{
 		if(pthread_join(p->philo[i].t_id, NULL))
 				return(1);
+		pthread_mutex_destroy(&p->l);
 		pthread_mutex_destroy(&p->key[i]);
 		i++;
 	}
@@ -60,7 +61,6 @@ int	ft_spawn_philos(t_parma *p)
 {
 	int			i;
 	t_philo		*ph;
-	pthread_t	track;
 	
 	i = 0;
 	p->t_spawn = ft_time(NULL);
@@ -70,47 +70,51 @@ int	ft_spawn_philos(t_parma *p)
 		ph->pram = p;
 		if(pthread_create(&(p->philo[i].t_id), NULL, ft_start, ph))
 			return (1);
-		pthread_create(&track, NULL, to_the_death, ph);
-		pthread_detach(track);
 		i++;
 		usleep(100);
 	}
-	if (p->n_eat >= 0)
-	{
-		pthread_create(&track, NULL, ft_track, p);
-		pthread_detach(track);
-	}
+	//ft_track(p);
 	return (0);
 }
 
-void	*to_the_death(void *p)
- {
- 	t_philo *ph;
-	
-	ph = p;
-	while (!ph->pram->p_end)
-	{
-		if (ph->t_death + ph->pram->t_die < ft_time(ph))
-		{
-			ft_thread_print(PHILO_DIE, ph);
-			ph->t_death = 1;
-			ph->pram->p_end = 1;
-		}
-		usleep(100);
-	}
-	return (NULL);
- }
  
- void  *ft_track(void *p)
- {
-	t_parma	*pr;
+void  ft_track(t_parma *p)
+{
+	int i;
 	
-	pr = p;
-	while (!pr->p_end)
+	while (f_race(p))
 	{
-		if (pr->p_full == pr->n_philo)
-			pr->p_end = 1;
-					printf("here\n");
-	}
-	return (NULL);
+		i = 0;
+		p->p_full = 0;
+		while (p->n_eat >= 0 && i < p->n_philo && !p->p_end)
+		{
+			pthread_mutex_lock(&p->l);
+			if (p->philo[i].n_toeat < p->n_eat)
+			{
+				pthread_mutex_unlock(&p->l);
+				break;
+			}
+			pthread_mutex_unlock(&p->l);
+			i++;
+			p->p_full++;
+		}
+		if (p->p_full == p->n_philo)
+			p->p_end = 1;
+		i = 0;
+		while (f_race(p) && i < p->n_philo)
+		{
+			pthread_mutex_lock(&p->l);
+			if (ft_time(&p->philo[i]) >= p->t_die + p->philo[i].t_death)
+			{
+				pthread_mutex_unlock(&p->l);
+				ft_thread_print(PHILO_DIE, &p->philo[i]);
+				p->p_end = 1;
+				// pthread_mutex_lock(&(p->output_key));
+				// printf("%zu :Philo_%d %s", ft_time(&p->philo[i]), i + 1, PHILO_DIE);
+				// pthread_mutex_unlock(&(p->output_key));
+			}
+			pthread_mutex_unlock(&p->l);
+			i++;
+		}	
+	}		
 }

@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/06 18:52:48 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/09 19:24:46 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_parma
 	t_philo				*philo;
 	pthread_mutex_t		*key;
 	pthread_mutex_t		output_key;
+	pthread_mutex_t		l;
+
 } t_parma;
 
 
@@ -85,9 +87,6 @@ size_t	ft_time(t_philo *ph);
 /*start pholo routin */
 void *ft_start(void *ph);
 
-/*routin to do by the philos*/
-void *ft_routin(void *p);
-
 /*lock the output while writing and unlocking it again*/
 void	ft_thread_print(char *str, t_philo *ph);
 
@@ -97,6 +96,8 @@ int		ft_endthreads(t_parma *p);
 void	*to_the_death(void *p);
 
 /*check if the philos ate all their  meals and end the program*/
-void	*ft_track(void *p);
+void	  ft_track(t_parma *p);
+
+int	f_race(t_parma *p);
 
 #endif
