@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/09 19:24:46 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/11 17:21:08 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,12 @@
 # define PHILO_THINK "\033[1;36mis thinking\n\033[0;39m"
 # define PHILO_DIE  "\033[1;30mdied\n \033[0;39m"
 
-/*utils*/
-int	ft_atoi(const char *str);
+typedef struct timeval	t_tempo;
 
-typedef struct timeval t_tempo;
-
-struct s_parma ;
+struct					s_parma;
 
 /*philospher*/
-typedef	struct s_philo
+typedef struct s_philo
 {
 	int				id;
 	int				t_life;
@@ -47,7 +44,7 @@ typedef	struct s_philo
 	pthread_t		t_id;
 }	t_philo;
 
-typedef struct s_parma 
+typedef struct s_parma
 {
 	int					t_die;
 	int					n_philo;
@@ -62,21 +59,21 @@ typedef struct s_parma
 	pthread_mutex_t		output_key;
 	pthread_mutex_t		l;
 
-} t_parma;
-
-
-/*initiale */
-int	ft_initparma(char **av, t_parma *p);
+}		t_parma;
 
 /*convert the char number to an intger */
+int		ft_atoi(const char *str);
 long	ft_up_atoi(char	*str);
 int		ft_isdigit(int c);
 
+/*initiale */
+int		ft_initparma(char **av, t_parma *p);
+
 /*intilais the rest of the struct and start creating mutexs and threads*/
-int	ft_dining_philos(t_parma *p);
+int		ft_dining_philos(t_parma *p);
 
 /*init forks mutex*/
-int 	ft_start_serving(t_parma *parm);
+int		ft_start_serving(t_parma *parm);
 
 /*creat threads (phlasipha)*/
 int		ft_spawn_philos(t_parma *p);
@@ -85,7 +82,7 @@ int		ft_spawn_philos(t_parma *p);
 size_t	ft_time(t_philo *ph);
 
 /*start pholo routin */
-void *ft_start(void *ph);
+void	*ft_start(void *ph);
 
 /*lock the output while writing and unlocking it again*/
 void	ft_thread_print(char *str, t_philo *ph);
@@ -96,8 +93,16 @@ int		ft_endthreads(t_parma *p);
 void	*to_the_death(void *p);
 
 /*check if the philos ate all their  meals and end the program*/
-void	  ft_track(t_parma *p);
+void	ft_track(t_parma *p);
 
-int	f_race(t_parma *p);
+int		f_race(t_parma *p);
+
+void	ft_exact(size_t waist);
+
+void	ft_dead(t_parma *p);
+
+void	lock_forks(t_philo *p, int i);
+
+void	unlock_forks(t_philo *p, int i);
 
 #endif

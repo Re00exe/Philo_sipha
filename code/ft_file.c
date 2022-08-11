@@ -6,18 +6,18 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:56:01 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/01 17:30:01 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/11 14:24:15 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_header.h"
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-static int ft_check(unsigned long long num, int sign)
+static	int	ft_check(unsigned long long num, int sign)
 {
 	if (num > LLONG_MAX)
 	{
@@ -29,11 +29,11 @@ static int ft_check(unsigned long long num, int sign)
 	return ((int)num * sign);
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int i;
-	unsigned long long nb;
-	int sign;
+	int					i;
+	unsigned long long	nb;
+	int					sign;
 
 	i = 0;
 	nb = 0;
@@ -54,11 +54,11 @@ int ft_atoi(const char *str)
 	return (ft_check(nb, sign));
 }
 
-long ft_up_atoi(char *str)
+long	ft_up_atoi(char *str)
 {
-	int i;
-	unsigned long nb;
-	int sign;
+	int					i;
+	unsigned long		nb;
+	int					sign;
 
 	i = 0;
 	nb = 0;
@@ -83,13 +83,13 @@ long ft_up_atoi(char *str)
 	return (nb * sign);
 }
 
-size_t ft_time(t_philo *ph)
+size_t	ft_time(t_philo *ph)
 {
-	t_tempo t;
+	t_tempo	t;
 
 	gettimeofday(&t, NULL);
 	if (ph == NULL)
-		return (t.tv_sec * 1000 + t.tv_usec / 1000 );
+		return (t.tv_sec * 1000 + t.tv_usec / 1000);
 	else
 		return (ft_time(NULL) - ph->pram->t_spawn);
 }

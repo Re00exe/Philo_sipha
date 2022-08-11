@@ -6,17 +6,18 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/09 15:35:16 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/11 14:32:41 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_header.h"
+
 int	ft_check_digit(char **av)
 {
-	int j;
-	
+	int	j;
+
 	j = 1;
-	while(av[j])
+	while (av[j])
 	{
 		if (ft_up_atoi(av[j]) > INT_MAX || ft_up_atoi(av[j]) < INT_MIN)
 			return (-1);
@@ -46,34 +47,29 @@ int	ft_initparma(char **av, t_parma *p)
 	return (1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int 		i;
+	int			i;
 	t_parma		*p;
 
 	i = 1;
 	p = NULL;
-	if (ac == 5 || ac == 6)
+	if (!(ac == 5 || ac == 6))
+		return (printf("Arguments !!!\n"));
+	while (i < ac)
 	{
-		while (i < ac)
-		{
-			if (ft_atoi(av[i]) <= 0 && i == 1)
-				return (printf(" \033[1;31m NO PhiLosoPhers\n" DEFAULT));
-			p = malloc(sizeof(t_parma));
-			if (!p)
-				return (printf(" \033[1;31m NO MeMory\n" DEFAULT));
-			if(!ft_initparma(av , p))
-				return (printf(" \033[1;31m Parsing error\n" DEFAULT));
-			i++;
-		}
-		if (ft_dining_philos(p))
-			printf("Error {init_phase}\n");
-		ft_track(p);
-		if(ft_endthreads(p))
-		  	printf("thread  joining Erorr;\n");
-		
+		if (ft_atoi(av[i]) <= 0 && i == 1)
+			return (printf(" \033[1;31m NO PhiLosoPhers\n" DEFAULT));
+		p = malloc(sizeof(t_parma));
+		if (!p)
+			return (printf(" \033[1;31m NO MeMory\n" DEFAULT));
+		if (!ft_initparma(av, p))
+			return (printf(" \033[1;31m Parsing error\n" DEFAULT));
+		i++;
 	}
-	else
-		printf("Arguments !!!\n");
+	if (ft_dining_philos(p))
+		printf("Error {init_phase}\n");
+	ft_track(p);
+	ft_endthreads(p);
 	return (0);
 }

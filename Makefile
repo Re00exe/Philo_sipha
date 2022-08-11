@@ -16,12 +16,13 @@ CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -rf
 PRINTF 		= printf
 
-SRC = code/main.c code/ft_file.c code/threads.c code/utils.c 
+SRC = code/main.c code/ft_file.c code/threads.c code/utils.c code/utils1.c
 
 all : $(NAME)
 
 $(NAME) : creat_dir $(SRC)
-			@$(CC) $(CFLAGS) $(SRC)  -o $(NAME) -fsanitize=thread -g -pthread
+			@$(CC) $(CFLAGS) $(SRC)  -o $(NAME) 
+#-fsanitize=thread -g -pthread
 			@$(PRINTF) "\r%100s\r$(BLUE)$(NAME) is up to date!$(DEFAULT)\n"
 			@mv $(NAME) $(BIN_DIR)
 
