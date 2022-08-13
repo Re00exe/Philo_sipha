@@ -10,13 +10,13 @@ BLUE	= \033[1;34m
 SRC_DIR		= code
 BIN			= $(BIN_DIR)/$(NAME)
 BIN_DIR		= bin
-NAME		= philo
+NAME		= philo_bonus
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror 
 RM			= rm -rf
 PRINTF 		= printf
 
-SRC = code/main.c code/ft_file.c code/threads.c code/utils.c code/utils1.c
+SRC = code/main.c code/ft_file.c code/processes.c code/utils.c code/utils1.c
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/11 14:32:41 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/13 13:03:43 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 			return (printf(" \033[1;31m Parsing error\n" DEFAULT));
 		i++;
 	}
-	if (ft_dining_philos(p))
+	if (ft_philos(p))
 		printf("Error {init_phase}\n");
 	ft_track(p);
 	ft_endthreads(p);

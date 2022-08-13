@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/11 17:21:08 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/13 13:04:16 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <string.h>
+# include <semaphore.h>
 
 # define DEFAULT "\033[0;39m"
 
@@ -41,7 +42,7 @@ typedef struct s_philo
 	int				n_toeat;
 	struct s_parma	*pram;
 	size_t			t_death;
-	pthread_t		t_id;
+	pid_t			philo;
 }	t_philo;
 
 typedef struct s_parma
@@ -55,9 +56,7 @@ typedef struct s_parma
 	int					p_full;
 	size_t				t_spawn;
 	t_philo				*philo;
-	pthread_mutex_t		*key;
-	pthread_mutex_t		output_key;
-	pthread_mutex_t		l;
+	sem_t				sem;
 
 }		t_parma;
 
@@ -69,14 +68,8 @@ int		ft_isdigit(int c);
 /*initiale */
 int		ft_initparma(char **av, t_parma *p);
 
-/*intilais the rest of the struct and start creating mutexs and threads*/
-int		ft_dining_philos(t_parma *p);
-
 /*init forks mutex*/
 int		ft_start_serving(t_parma *parm);
-
-/*creat threads (phlasipha)*/
-int		ft_spawn_philos(t_parma *p);
 
 /*get the time in micro secondes*/
 size_t	ft_time(t_philo *ph);
@@ -88,14 +81,12 @@ void	*ft_start(void *ph);
 void	ft_thread_print(char *str, t_philo *ph);
 
 /*joining threads and free them all */
-int		ft_endthreads(t_parma *p);
+int		ft_ends(t_parma *p);
 /* check the death of a philo and end the program */
 void	*to_the_death(void *p);
 
-/*check if the philos ate all their  meals and end the program*/
-void	ft_track(t_parma *p);
-
-int		f_race(t_parma *p);
+/*init philos and creat the seam*/
+int ft_philos(t_parma *p);
 
 void	ft_exact(size_t waist);
 
