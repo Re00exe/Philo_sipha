@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:56:01 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/11 14:24:15 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/14 11:11:56 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ long	ft_up_atoi(char *str)
 			return (nb * sign);
 		i++;
 	}
-	if (str[i] || i == 0 || (i && !ft_isdigit(str[i - 1])))
+	if (str[i] || i == 0 || (i && !ft_isdigit(str[i - 1])) || nb < 0)
 		return ((long)INT_MAX + 1);
 	return (nb * sign);
 }
 
-size_t	ft_time(t_philo *ph)
+size_t	ftbs_time(t_philo *ph)
 {
 	t_tempo	t;
 
@@ -91,5 +91,5 @@ size_t	ft_time(t_philo *ph)
 	if (ph == NULL)
 		return (t.tv_sec * 1000 + t.tv_usec / 1000);
 	else
-		return (ft_time(NULL) - ph->pram->t_spawn);
+		return (ftbs_time(NULL) - ph->pram->t_spawn);
 }

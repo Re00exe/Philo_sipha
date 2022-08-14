@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/13 13:03:43 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/13 20:05:08 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_check_digit(char **av)
 	return (1);
 }
 
-int	ft_initparma(char **av, t_parma *p)
+int	init_parma(char **av, t_parma *p)
 {
 	if (ft_check_digit(av) == -1)
 	{
@@ -63,13 +63,11 @@ int	main(int ac, char **av)
 		p = malloc(sizeof(t_parma));
 		if (!p)
 			return (printf(" \033[1;31m NO MeMory\n" DEFAULT));
-		if (!ft_initparma(av, p))
+		if (!init_parma(av, p))
 			return (printf(" \033[1;31m Parsing error\n" DEFAULT));
 		i++;
 	}
-	if (ft_philos(p))
+	if (init_philos(p))
 		printf("Error {init_phase}\n");
-	ft_track(p);
-	ft_endthreads(p);
 	return (0);
 }

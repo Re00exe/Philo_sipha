@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/13 13:04:16 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/14 11:08:48 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_philo
 	int				n_toeat;
 	struct s_parma	*pram;
 	size_t			t_death;
-	pid_t			philo;
+	pid_t			pro;
 }	t_philo;
 
 typedef struct s_parma
@@ -56,7 +56,7 @@ typedef struct s_parma
 	int					p_full;
 	size_t				t_spawn;
 	t_philo				*philo;
-	sem_t				sem;
+	sem_t				*sem;
 
 }		t_parma;
 
@@ -66,34 +66,33 @@ long	ft_up_atoi(char	*str);
 int		ft_isdigit(int c);
 
 /*initiale */
-int		ft_initparma(char **av, t_parma *p);
+int		init_parma(char **av, t_parma *p);
 
 /*init forks mutex*/
-int		ft_start_serving(t_parma *parm);
+int		serving(t_parma *parm);
 
 /*get the time in micro secondes*/
-size_t	ft_time(t_philo *ph);
+size_t	ftbs_time(t_philo *ph);
 
 /*start pholo routin */
-void	*ft_start(void *ph);
+void	*ftb_start(void *ph);
 
 /*lock the output while writing and unlocking it again*/
-void	ft_thread_print(char *str, t_philo *ph);
+void	ftb_print(char *str, t_philo *ph);
 
 /*joining threads and free them all */
-int		ft_ends(t_parma *p);
+int		ftb_ends(t_parma *p);
 /* check the death of a philo and end the program */
-void	*to_the_death(void *p);
+void	*tob_the_death(void *p);
 
 /*init philos and creat the seam*/
-int ft_philos(t_parma *p);
+int 	init_philos(t_parma *p);
+/*creat philos and lunch routin	*/
+int	spawn_philos(t_parma p);
 
-void	ft_exact(size_t waist);
+void	exact(size_t waist);
 
-void	ft_dead(t_parma *p);
+void	ftb_dead(t_parma *p);
 
-void	lock_forks(t_philo *p, int i);
-
-void	unlock_forks(t_philo *p, int i);
 
 #endif
