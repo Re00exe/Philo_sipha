@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 00:33:04 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/13 13:14:55 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/14 11:14:17 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_endthreads(t_parma *p)
 	return (0);
 }
 
-int	ft_dining_philos(t_parma *p)
+int	 ft_dining_philos(t_parma *p)
 {
 	int		i;
 	int		j;
@@ -41,7 +41,7 @@ int	ft_dining_philos(t_parma *p)
 	j = 0;
 	p->philo = malloc(p->n_philo * sizeof(t_philo));
 	p->key = malloc(p->n_philo * sizeof(pthread_mutex_t));
-	if (!p->philo ||!p->key)
+	if (!p->philo || !p->key)
 		return (1);
 	while (i < p->n_philo)
 	{

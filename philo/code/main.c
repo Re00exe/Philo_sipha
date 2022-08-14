@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/11 14:32:41 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/14 11:17:05 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_check_digit(char **av)
 	j = 1;
 	while (av[j])
 	{
-		if (ft_up_atoi(av[j]) > INT_MAX || ft_up_atoi(av[j]) < INT_MIN)
+		if (ft_up_atoi(av[j]) > INT_MAX || ft_up_atoi(av[j]) <= 0)
 			return (-1);
 		j++;
 	}
