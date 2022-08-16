@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/13 20:05:08 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/16 18:42:28 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int	init_parma(char **av, t_parma *p)
 	p->t_die = ft_atoi(av[2]);
 	p->t_eat = ft_atoi(av[3]);
 	p->t_sleep = ft_atoi(av[4]);
-	p->p_end = 0;
-	p->p_full = 0;
+	p->t_spawn = 0;
 	if (av[5])
 		p->n_eat = ft_atoi(av[5]);
 	else
@@ -56,18 +55,20 @@ int	main(int ac, char **av)
 	p = NULL;
 	if (!(ac == 5 || ac == 6))
 		return (printf("Arguments !!!\n"));
+	p = malloc(sizeof(t_parma));
+	if (!p)
+		return (printf(" \033[1;31m NO MeMory\n" DEFAULT));
 	while (i < ac)
 	{
 		if (ft_atoi(av[i]) <= 0 && i == 1)
 			return (printf(" \033[1;31m NO PhiLosoPhers\n" DEFAULT));
-		p = malloc(sizeof(t_parma));
-		if (!p)
-			return (printf(" \033[1;31m NO MeMory\n" DEFAULT));
+		memset(p, 0, sizeof(t_parma));
 		if (!init_parma(av, p))
 			return (printf(" \033[1;31m Parsing error\n" DEFAULT));
 		i++;
 	}
 	if (init_philos(p))
 		printf("Error {init_phase}\n");
+	end_philo(p);
 	return (0);
 }

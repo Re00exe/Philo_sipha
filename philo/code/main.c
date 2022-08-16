@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/14 11:17:05 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/16 18:41:39 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ int	main(int ac, char **av)
 	p = NULL;
 	if (!(ac == 5 || ac == 6))
 		return (printf("Arguments !!!\n"));
+	p = malloc(sizeof(t_parma));
+	if (!p)
+		return (printf(" \033[1;31m NO MeMory\n" DEFAULT));
 	while (i < ac)
 	{
 		if (ft_atoi(av[i]) <= 0 && i == 1)
 			return (printf(" \033[1;31m NO PhiLosoPhers\n" DEFAULT));
-		p = malloc(sizeof(t_parma));
-		if (!p)
-			return (printf(" \033[1;31m NO MeMory\n" DEFAULT));
 		if (!ft_initparma(av, p))
 			return (printf(" \033[1;31m Parsing error\n" DEFAULT));
 		i++;

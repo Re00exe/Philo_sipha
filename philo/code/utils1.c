@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 17:09:11 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/11 17:17:52 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/16 17:26:52 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_dead(t_parma *p)
 			pthread_mutex_unlock(&(p->output_key));
 		}
 		pthread_mutex_unlock(&p->l);
+		usleep(100);
 		i++;
 	}
 }

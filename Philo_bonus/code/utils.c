@@ -6,43 +6,72 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:57:24 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/13 19:25:27 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/16 17:59:49 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_header.h"
 
-void	exact(size_t waist)
+void	*death_track(void *p)
 {
-	size_t	time;
+	int		i;
+	t_philo	*philo;
 
-	time = ftbs_time(NULL);
-	while (ftbs_time(NULL) - time < waist)
-		usleep(300);
+	philo = (t_philo *)p;
+	i = 0;
+	while (!philo->wasted)
+	{
+		if (philo->pram->t_die + philo->t_death < ft_bs_time(philo))
+		{
+			ft_bs_thread_print(PHILO_DIE, p);
+			philo->wasted = 1;
+			exit (1);
+		}
+		i++;
+		usleep(150);
+	}
+	return (NULL);
 }
 
-// void	ft_thread_print(char *str, t_philo *ph)
-// {
-// 	//TODO : sem
-// 	if (!strcmp(str, PHILO_EATING))
-// 	{	
-// 		ph->t_death = ft_time(ph);
-// 		ph->n_toeat++;
-// 	}
-// 	if (!ph->pram->p_end)
-// 		printf("%zu :Philo_%d %s", ft_time(ph), ph->id + 1, str);
-// //TODO : sem
-// }
+void	ft_bs_thread_print(char *str, t_philo *ph)
+{
+	sem_wait(ph->pram->l);
+	sem_wait(ph->pram->sem_out);
+	if (!ph->wasted)
+		printf("\033[0;39m%zu :Philo_%d %s", ft_bs_time(ph), ph->id + 1, str);
+	sem_post(ph->pram->sem_out);
+	if (ph->wasted)
+		sem_wait(ph->pram->sem_out);
+	sem_post(ph->pram->l);
+}
 
 int	serving(t_parma *parm)
 {
-	sem_unlink("sem_output");
-	if (sem_open("sem_output", O_CREAT, O_RDWR))
+	sem_unlink("pro_per");
+	sem_unlink("fork_key");
+	sem_unlink("data");
+	parm->l = sem_open("data", O_CREAT, 0644, 1);
+	parm->sem_out = sem_open("pro_per", O_CREAT, 0644, 1);
+	if (parm->sem_out == SEM_FAILED)
 		return (1);
-	sem_unlink("sem_key");
-	parm->sem = sem_open("sem_key", O_CREAT, O_RDWR, parm->n_philo);
-	if (!parm->sem)
+	parm->sem = sem_open("fork_key", O_CREAT, 0664, parm->n_philo);
+	if (parm->sem == SEM_FAILED)
 		return (1);
 	return (0);
 }
 
+void	ft_bs_lforks(t_philo *p)
+{
+	sem_wait(p->pram->sem);
+	ft_bs_thread_print(PHILO_T_FORK, p);
+	if (p->pram->n_philo == 1)
+		return ;
+	sem_wait(p->pram->sem);
+	ft_bs_thread_print(PHILO_T_FORK, p);
+}
+
+void	ft_bs_uforks(t_philo *p)
+{
+	sem_post(p->pram->sem);
+	sem_post(p->pram->sem);
+}
