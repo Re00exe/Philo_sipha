@@ -18,17 +18,15 @@ PRINTF 		= printf
 
 SRC = code/main.c code/ft_file.c code/processes.c code/utils.c
 
-all : $(NAME)
+all : $(BIN)
 
-$(NAME) : creat_dir $(SRC)
+$(BIN) : $(SRC)
+			@mkdir -p $(BIN_DIR)
 			@$(CC) $(CFLAGS) $(SRC)  -o $(NAME) #-fsanitize=thread -fsanitize-blacklist=code/blacklist.txt -g
 			@$(PRINTF) "\r%100s\r$(BLUE)$(NAME) is up to date!$(DEFAULT)\n"
 			@mv $(NAME) $(BIN_DIR)
 
-bonus : all
-
 creat_dir :
-	@mkdir -p $(BIN_DIR)
 
 clean :
 	@$(PRINTF) "$(PINK)Cleaning $(NAME) ... $(DEFAULT)\n"
