@@ -15,6 +15,7 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror 
 RM			= rm -rf
 PRINTF 		= printf
+FSANITIZE	= -fsanitize-blacklist=code/.blacklist.txt
 
 SRC = code/main.c code/ft_file.c code/processes.c code/utils.c
 
@@ -22,11 +23,11 @@ all : $(BIN)
 
 $(BIN) : $(SRC)
 			@mkdir -p $(BIN_DIR)
-			@$(CC) $(CFLAGS) $(SRC)  -o $(NAME) #-fsanitize=thread -fsanitize-blacklist=code/blacklist.txt -g
+			@$(CC) $(CFLAGS) $(SRC)  -o $(NAME)
 			@$(PRINTF) "\r%100s\r$(BLUE)$(NAME) is up to date!$(DEFAULT)\n"
 			@mv $(NAME) $(BIN_DIR)
 
-creat_dir :
+bonus : all
 
 clean :
 	@$(PRINTF) "$(PINK)Cleaning $(NAME) ... $(DEFAULT)\n"
@@ -38,3 +39,5 @@ fclean: clean
 	
 re : fclean 
 	@make all
+
+.PHONY : all clean fclean re bonus

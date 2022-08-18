@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:57:24 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/16 17:59:49 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/18 12:16:12 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ void	*death_track(void *p)
 
 	philo = (t_philo *)p;
 	i = 0;
-	while (!philo->wasted)
+	while (!philo->pram->p_end)
 	{
 		if (philo->pram->t_die + philo->t_death < ft_bs_time(philo))
 		{
-			ft_bs_thread_print(PHILO_DIE, p);
-			philo->wasted = 1;
+			philo->pram->p_end = 1;
+			sem_wait(philo->pram->sem_out);
+			printf("\033[0;39m%zu :Philo_%d %s", \
+			ft_bs_time(p), philo->id + 1, PHILO_DIE);
 			exit (1);
 		}
 		i++;
-		usleep(150);
 	}
 	return (NULL);
 }
@@ -37,11 +38,9 @@ void	ft_bs_thread_print(char *str, t_philo *ph)
 {
 	sem_wait(ph->pram->l);
 	sem_wait(ph->pram->sem_out);
-	if (!ph->wasted)
+	if (!ph->pram->p_end)
 		printf("\033[0;39m%zu :Philo_%d %s", ft_bs_time(ph), ph->id + 1, str);
 	sem_post(ph->pram->sem_out);
-	if (ph->wasted)
-		sem_wait(ph->pram->sem_out);
 	sem_post(ph->pram->l);
 }
 

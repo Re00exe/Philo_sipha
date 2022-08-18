@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 11:20:24 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/16 18:43:36 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/18 11:31:13 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,16 @@ void	ft_bs_start(t_philo *ph)
 		if (ph->pram->n_philo == 1)
 			break ;
 		ft_bs_thread_print(PHILO_EATING, ph);
+		sem_wait(ph->pram->l);
 		ph->t_death = ft_bs_time(ph);
 		ph->n_toeat++;
-		usleep(ph->pram->t_eat * 1000);
+		sem_post(ph->pram->l);
+		exact(ph->pram->t_eat);
 		ft_bs_uforks(ph);
 		if (ph->n_toeat == ph->pram->n_eat)
 			exit(0);
 		ft_bs_thread_print(PHILO_SLEEP, ph);
-		usleep(ph->pram->t_sleep * 1000);
+		exact(ph->pram->t_sleep);
 		ft_bs_thread_print(PHILO_THINK, ph);
 	}
 	pthread_join(track, NULL);

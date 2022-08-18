@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:57:24 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/17 08:48:43 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/18 11:16:56 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_exact(size_t waist)
 
 	time = ft_time(NULL);
 	while (ft_time(NULL) - time < waist)
-		usleep(300);
+		usleep(10);
 }
 
 void	ft_thread_print(char *str, t_philo *ph)

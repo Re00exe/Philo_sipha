@@ -23,11 +23,8 @@ all : $(BIN)
 $(BIN) : $(SRC)
 			@mkdir -p $(BIN_DIR)
 			@$(CC) $(CFLAGS) $(SRC)  -o $(NAME) 
-#-fsanitize=thread -g -pthread
 			@$(PRINTF) "\r%100s\r$(BLUE)$(NAME) is up to date!$(DEFAULT)\n"
 			@mv $(NAME) $(BIN_DIR)
-
-bonus : all
 
 clean :
 	@$(PRINTF) "$(PINK)Cleaning $(NAME) ... $(DEFAULT)\n"
@@ -39,3 +36,4 @@ fclean: clean
 	
 re : fclean 
 	@make all
+.PHONY : all bonus clean fclean re

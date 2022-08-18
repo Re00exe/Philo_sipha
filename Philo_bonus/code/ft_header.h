@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 12:32:22 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/16 17:39:08 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/18 11:40:44 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_parma
 	int					t_die;
 	int					n_philo;
 	int					t_eat;
+	int					p_end;
 	int					t_sleep;
 	int					n_eat;
 	size_t				t_spawn;

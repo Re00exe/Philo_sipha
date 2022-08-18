@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:56:01 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/14 17:48:17 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/18 11:17:00 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,13 @@ size_t	ft_bs_time(t_philo *ph)
 		return (t.tv_sec * 1000 + t.tv_usec / 1000);
 	else
 		return (ft_bs_time(NULL) - ph->pram->t_spawn);
+}
+
+void	exact(size_t waist)
+{
+	size_t	time;
+
+	time = ft_bs_time(NULL);
+	while (ft_bs_time(NULL) - time < waist)
+		usleep(10);
 }
