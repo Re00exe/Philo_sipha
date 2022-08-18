@@ -6,7 +6,7 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 13:57:24 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/11 17:26:19 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/17 08:48:43 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,12 @@ void	lock_forks(t_philo *p, int i)
 	pthread_mutex_lock(&(p->pram->key[i]));
 	ft_thread_print(PHILO_T_FORK, p);
 	if (p->pram->n_philo == 1)
+	{	
+		pthread_mutex_lock(&p->pram->l);
+		p->t_death = ft_time(p);
+		pthread_mutex_unlock(&p->pram->l);
 		return ;
+	}
 	pthread_mutex_lock(&(p->pram->key[(i + 1) \
 	% p->pram->n_philo]));
 	ft_thread_print(PHILO_T_FORK, p);
