@@ -6,11 +6,20 @@
 /*   By: midfath <midfath@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:36 by midfath           #+#    #+#             */
-/*   Updated: 2022/08/18 11:41:37 by midfath          ###   ########.fr       */
+/*   Updated: 2022/08/19 13:31:48 by midfath          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_header.h"
+
+void	exact(size_t waist)
+{
+	size_t	time;
+
+	time = ft_bs_time(NULL);
+	while (ft_bs_time(NULL) - time < waist)
+		usleep(10);
+}
 
 int	ft_check_digit(char **av)
 {

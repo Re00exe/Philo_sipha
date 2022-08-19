@@ -1,3 +1,0 @@
-# Ignore reports from ft_bs_start function.
-fun:ft_bs_start
-fun:ft_bs_thread_print
